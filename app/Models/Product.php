@@ -6,9 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $table = 'CRM_PRODUCT';
+    protected $table = 'crm_product';
 
-    protected $primaryKey = 'ID_PRODUCT';
+    protected $primaryKey = 'id_product';
 
     public $timestamps = false;
+
+    public function photos()
+    {
+        return $this->hasMany(\App\Models\Photo::class, 'id_product');
+    }
+
+    public function productType()
+    {
+        return $this->hasOne(\App\Models\ProductType::class, 'id_producttype', 'id_producttype');
+    }
+
 }
