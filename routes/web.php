@@ -11,9 +11,6 @@
 |
 */
 
-Route::prefix('/products')->group(function () {
-    Route::get('/', 'ProductController@index');
-});
 
 
 Route::get('/', function () {
@@ -21,7 +18,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/orderstates', function () {
-    $orderStates = App\Models\OrderState::all();
-    return $orderStates;
-});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

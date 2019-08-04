@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\Http\Resources\Product as ProductResource;
-use \App\Models\Product as Product;
 
-class ProductController extends Controller
+use App\Models\Order as Order;
+use App\Http\Resources\Order as OrderResource;
+
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        $products->load('productType', 'photos');
-        return ProductResource::collection($products);
-        
+        return OrderResource::collection(Order::all());
     }
 
     /**

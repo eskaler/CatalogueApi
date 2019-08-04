@@ -16,3 +16,21 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+// Route::prefix('/products')->group(function () {
+//     Route::get('/', 'ProductController@index');
+// });
+// Route::prefix('/producttypes')->group(function () {
+//     Route::get('/', 'ProductTypeController@index');
+// });
+
+Route::prefix('/orders')->group(function () {
+    Route::middleware('auth:api')->get('/', 'OrderController@index');
+});
+
+Route::resource('products', 'ProductController');
+Route::resource('producttypes', 'ProductTypeController');
+
+
+

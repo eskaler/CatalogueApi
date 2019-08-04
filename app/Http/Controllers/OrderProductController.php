@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OrderProduct;
 use Illuminate\Http\Request;
-use \App\Http\Resources\Product as ProductResource;
-use \App\Models\Product as Product;
 
-class ProductController extends Controller
+class OrderProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        $products->load('productType', 'photos');
-        return ProductResource::collection($products);
-        
+        //
     }
 
     /**
@@ -45,10 +41,10 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\OrderProduct  $orderProduct
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(OrderProduct $orderProduct)
     {
         //
     }
@@ -56,10 +52,10 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\OrderProduct  $orderProduct
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(OrderProduct $orderProduct)
     {
         //
     }
@@ -68,10 +64,10 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\OrderProduct  $orderProduct
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, OrderProduct $orderProduct)
     {
         //
     }
@@ -79,10 +75,10 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\OrderProduct  $orderProduct
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(OrderProduct $orderProduct)
     {
         //
     }

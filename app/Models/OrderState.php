@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderState extends Model
 {
-    protected $table = 'CRM_ORDERSTATE';
+    protected $table = 'crm_orderstate';
 
-    protected $primaryKey = 'ID_ORDERSTATE';
+    protected $primaryKey = 'id_orderstate';
 
     public $timestamps = false;
     //

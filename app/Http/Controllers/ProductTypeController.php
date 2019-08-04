@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\Http\Resources\Product as ProductResource;
-use \App\Models\Product as Product;
+use App\Models\ProductType as ProductType;
+use App\Http\Resources\ProductType as ProductTypeResource;
 
-class ProductController extends Controller
+class ProductTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,20 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        $products->load('productType', 'photos');
-        return ProductResource::collection($products);
-        
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $productTypes = ProductType::all();
+        return ProductTypeResource::collection($productTypes);
     }
 
     /**
@@ -49,17 +37,6 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }

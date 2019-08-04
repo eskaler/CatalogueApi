@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'api',
         'passwords' => 'users',
     ],
 
@@ -44,7 +44,9 @@ return [
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
-            'hash' => false,
+            'input_key' => 'apikey',
+            'storage_key' => 's_apikey',
+            'hash' => true,
         ],
     ],
 
@@ -69,7 +71,7 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
-        ],
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
