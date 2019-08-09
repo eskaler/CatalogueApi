@@ -18,19 +18,32 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-// Route::prefix('/products')->group(function () {
-//     Route::get('/', 'ProductController@index');
-// });
-// Route::prefix('/producttypes')->group(function () {
-//     Route::get('/', 'ProductTypeController@index');
-// });
+Route::prefix('/categories')->group(function () {     
+    Route::get('/', 'CategoryController@index');
+    Route::middleware('auth:api')->post('/', 'CategoryController@store');
+    Route::middleware('auth:api')->put('/{id}', 'CategoryController@update');
+});
 
 Route::prefix('/orders')->group(function () {
     Route::middleware('auth:api')->get('/', 'OrderController@index');
+    Route::middleware('auth:api')->get('/{id}', 'OrderController@show');
+    Route::get('/', 'OrderController@store');
 });
 
-Route::resource('products', 'ProductController');
-Route::resource('producttypes', 'ProductTypeController');
+Route::prefix('/products')->group(function () {     
+    Route::get('/', 'ProductController@index');
+    Route::middleware('auth:api')->post('/', 'ProductController@store');
+    Route::middleware('auth:api')->put('/', 'ProductController@update');
+    Route::middleware('auth:api')->put('/{id}', 'ProductController@update');
+});
+
+Route::prefix('/photos')->group(function () {
+    Route::middleware('auth:api')->get('/{id}', 'PhotoController@show');
+    Route::middleware('auth:api')->post('/', 'PhotoController@store');    
+    Route::middleware('auth:api')->post('/upload', 'PhotoController@upload');
+});
+
+
 
 
 

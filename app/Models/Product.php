@@ -4,24 +4,28 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\ProductType as ProductType;
-use App\Models\Photo as Photo;
+use App\Models\Category;
+use App\Models\Photo;
 
 class Product extends Model
 {
     protected $table = 'crm_product';
-    protected $primaryKey = 'id_product';
+
     const CREATED_AT = 'd_created';
     const UPDATED_AT = 'd_edited';
 
+    protected $fillable = [
+        'id'
+    ];
+
     public function photos()
     {
-        return $this->hasMany(Photo::class, 'id_product');
+        return $this->hasMany(Photo::class, 'id_product', 'id');
     }
 
-    public function productType()
+    public function category()
     {
-        return $this->hasOne(ProductType::class, 'id_producttype', 'id_producttype');
+        return $this->hasOne(Category::class, 'id', 'id_category');
     }
 
 }

@@ -8,7 +8,10 @@ class Photo extends Model
 {
     protected $table = 'crm_photo';
 
-    protected $primaryKey = 'id_photo';
-
     public $timestamps = false;
+    
+    protected $fillable = [
+        'id'
+    ];
+
 }

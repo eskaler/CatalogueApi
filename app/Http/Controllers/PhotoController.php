@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Order;
-use App\Http\Resources\OrderResource;
+use App\Models\Photo;
+use App\Http\Resources\PhotoResource;
 
-class OrderController extends Controller
+class PhotoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,16 +15,6 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return OrderResource::collection(Order::all());
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -37,7 +27,26 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $photo = new Photo;
+
+        $photo->id_product    = $request->product["id"];
+        $photo->s_name        = $request->name;
+        $photo->s_server      = $request->server;
+
+        $photo->save();
+
+        return new PhotoResource($photo);
+    }
+
+    public function upload(Request $request){
+        
+        $name = str_random(17).'.'.'png';
+        $path = base_path('public/') . "photos/" . $name;
+        $img = $request['image'];
+        $img = substr($img, strpos($img, ",")+1);
+        $data = base64_decode($img);
+        $success = file_put_contents($path, $data);
+        return [ "name" => $name];
     }
 
     /**
@@ -48,18 +57,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        return new OrderResource(Order::findOrFail($id));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return new PhotoResource(Photo::findOrFail($id));
     }
 
     /**

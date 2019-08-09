@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ProductType as ProductType;
-use App\Http\Resources\ProductType as ProductTypeResource;
+use App\Models\Category;
+use App\Http\Resources\CategoryResource;
 
-class ProductTypeController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        $productTypes = ProductType::all();
-        return ProductTypeResource::collection($productTypes);
+        $categories = Category::all();
+        return CategoryResource::collection($categories);
     }
 
     /**
@@ -27,7 +27,14 @@ class ProductTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category;
+
+        $category->s_name        = $request->name;
+        $category->s_caption     = $request->caption;
+
+        $category->save();
+        
+        return new CategoryResource($category);
     }
 
     /**
@@ -50,7 +57,14 @@ class ProductTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+
+        $category->s_name = $request->name;
+        $category->s_caption = $request->caption;
+
+        $category->save();
+
+        return $category;
     }
 
     /**
