@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OrderProduct;
 use Illuminate\Http\Request;
+
+use App\Models\OrderProduct;
+use App\Http\Resources\OrderProductResource;
 
 class OrderProductController extends Controller
 {
@@ -18,24 +20,22 @@ class OrderProductController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $orderProduct = new OrderProduct;
+
+        $orderProduct->id_order = $id;
+        $orderProduct->id_product = $request->idProduct;
+        $orderProduct->n_qty = $request->quantity;
+
+        $orderProduct->save();
+
+        return new OrderProductResource($orderProduct);
     }
 
     /**
@@ -45,17 +45,6 @@ class OrderProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(OrderProduct $orderProduct)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\OrderProduct  $orderProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(OrderProduct $orderProduct)
     {
         //
     }

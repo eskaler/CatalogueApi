@@ -20,16 +20,6 @@ class OrderController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -37,7 +27,14 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = new Order;
+
+        $order->s_customer_name = $request->customerName;
+        $order->s_customer_phone =$request->customerPhone;
+
+        $order->save();
+
+        return new OrderResource($order);
     }
 
     /**
@@ -49,17 +46,6 @@ class OrderController extends Controller
     public function show($id)
     {
         return new OrderResource(Order::findOrFail($id));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**

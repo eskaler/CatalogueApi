@@ -11,10 +11,19 @@ class Order extends Model
 {
     protected $table = 'crm_order';
     const CREATED_AT = 'd_created';
+    const UPDATED_AT = 'd_edited';
 
-    public function state()
+    protected $fillable = [
+        'id'
+    ];
+
+    protected $attributes = [
+        'id_status' => 1
+    ];
+
+    public function status()
     {
-        return $this->hasOne(Status::class, 'id_status', 'id');
+        return $this->hasOne(Status::class, 'id', 'id_status');
     }
     
     public function products()
