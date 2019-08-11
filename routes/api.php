@@ -27,8 +27,11 @@ Route::prefix('/categories')->group(function () {
 Route::prefix('/orders')->group(function () {
     Route::middleware('auth:api')->get('/', 'OrderController@index');
     Route::middleware('auth:api')->get('/{id}', 'OrderController@show');
+    Route::middleware('auth:api')->put('/{id}', 'OrderController@update');
+
     Route::post('/', 'OrderController@store');
     Route::post('/{id}/products', 'OrderProductController@store');
+    
 });
 
 Route::prefix('/products')->group(function () {     

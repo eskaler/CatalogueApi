@@ -21,8 +21,8 @@ class OrderResource extends JsonResource
             'id' => $this->id,
             'customerName' => $this->s_customer_name,
             'customerPhone' => $this->s_customer_phone,
-            'createdAt' => $this->d_created,
-            'expiresAt' => $this->d_expires,
+            'created' => $this->d_created,
+            'expires' => $this->d_expires,
             'status' => new StatusResource($this->status),
             'products' => OrderProductResource::collection($this->products)
         ];

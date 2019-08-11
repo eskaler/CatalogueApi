@@ -27,15 +27,25 @@ class OrderProductController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $orderProduct = new OrderProduct;
+        // dd($request);
 
-        $orderProduct->id_order = $id;
-        $orderProduct->id_product = $request->idProduct;
-        $orderProduct->n_qty = $request->quantity;
+        $orderProducts = [];
 
-        $orderProduct->save();
+        foreach($request->all() as $key => $product){
+            
+            $orderProduct = new OrderProduct;
 
-        return new OrderProductResource($orderProduct);
+            $orderProduct->id_order = $id;
+            $orderProduct->id_product = $product['idProduct'];
+            $orderProduct->n_qty = $product['quantity'];
+
+            $orderProduct->save();
+
+            $orderProducts[] = $orderProduct;
+        }
+
+        return ['data' => $orderProducts];
+        
     }
 
     /**

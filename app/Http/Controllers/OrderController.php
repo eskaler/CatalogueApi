@@ -57,7 +57,15 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order = Order::findOrFail($id);
+
+        $order->s_customer_name = $request->customerName;
+        $order->s_customer_phone =$request->customerPhone;
+        $order->id_status =$request->status['id'];
+
+        $order->save();
+
+        return new OrderResource($order);
     }
 
     /**
