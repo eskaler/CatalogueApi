@@ -47,6 +47,11 @@ Route::prefix('/photos')->group(function () {
     Route::middleware('auth:api')->post('/upload', 'PhotoController@upload');
 });
 
+Route::prefix('/users')->group(function () {
+    Route::post('/login', 'Auth\\LoginController@login');
+    // Route::post('/logout', 'Auth\\LoginController@logout');
+});
+
 
 
 

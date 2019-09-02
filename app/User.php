@@ -11,6 +11,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $table = 'crm_user';
+    public $timestamps = false;
 
     // /**
     //  * The attributes that are mass assignable.
@@ -18,7 +19,7 @@ class User extends Authenticatable
     //  * @var array
     //  */
     protected $fillable = [
-        'id', 's_login', 's_token'
+        'id'
     ];
 
     // /**
@@ -27,7 +28,7 @@ class User extends Authenticatable
     //  * @var array
     //  */
     protected $hidden = [
-        's_password', 's_token',
+        's_password'
     ];
 
 }
