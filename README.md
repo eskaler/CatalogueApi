@@ -1,4 +1,4 @@
 # CatalogueApi
-Back-end for https://github.com/eskaler/Catalogue2
-# Docs
+Бэкенд для https://github.com/eskaler/Catalogue2
+## Документация
 https://documenter.getpostman.com/view/8168436/SVYuqGit
